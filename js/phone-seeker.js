@@ -1,14 +1,12 @@
 document.getElementById('errorSearchText').style.display = 'none';
 document.getElementById('errorPhoneName').style.display = 'none';
 
-
 // error message
 const displayError = error => {
     document.getElementById(error).style.display = 'block';
 }
 
 // search Text input field
-
 const search_input_text = () => {
     const searchInputField = document.getElementById('search-text');
     const searchInputText = searchInputField.value;
