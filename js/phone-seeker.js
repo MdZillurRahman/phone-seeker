@@ -20,7 +20,7 @@ const search_input_text = () => {
         displayError('errorSearchText');
     }
     else{
-        const url =`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
+    const url =`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
     fetch(url)
     .then(res => res.json())
     .then(info => display_search_result(info.data));
@@ -32,8 +32,11 @@ const search_input_text = () => {
 const display_search_result = phones => {
     const searchResultFull = document.getElementById('search_resultFull');
     searchResultFull.textContent = '';
+    document.getElementById('errorPhoneName').style.display = 'none';
 
-
+    if(phones.length == 0){
+        displayError('errorPhoneName');
+    }
     for(const phone of phones.slice(0, 20)){
         const div = document.createElement('div');
         div.classList.add('col');
