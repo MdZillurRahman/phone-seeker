@@ -64,6 +64,7 @@ const Phone_details = id =>{
 
 const display_details = details =>{
     const phone_details = document.getElementById('about_Phone');
+    phone_details.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
