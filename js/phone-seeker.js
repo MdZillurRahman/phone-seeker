@@ -17,15 +17,15 @@ const display_search_result = phones => {
     const searchResultFull = document.getElementById('search_resultFull');
     searchResultFull.textContent = '';
 
-    for(const phone of phones){
+    for(const phone of phones.slice(0, 20)){
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML=`
         <div class="card">
                     <img src="${phone.image}" class="card-img-top w-50 mx-auto rounded-3 mt-3 h-50" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">${phone.phone_name}</h5>
-                      <p class="card-text">${phone.brand}</p>
+                      <h5 class="card-title">Name: ${phone.phone_name}</h5>
+                      <p class="card-text">Brand Name: ${phone.brand}</p>
                       <button onclick="Phone_details('${phone.slug}')" type="button" class="btn btn-primary">Details</button>
                     </div>
                   </div>
@@ -55,6 +55,9 @@ const display_details = details =>{
         <h5 class="card-title">Chipset:  ${details.mainFeatures.chipSet}</h5>
         <h5 class="card-title">DisplaySize: ${details.mainFeatures.displaySize}</h5>
         <h5 class="card-title">Memory: ${details.mainFeatures.memory}</h5>
+        <h5 class="card-title">Sensor: ${details.mainFeatures.sensors}</h5>
+        <h5 class="card-title">Others: ${details.mainFeatures.others}</h5>
+
     </div>
     `;
     phone_details.appendChild(div);
