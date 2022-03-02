@@ -32,6 +32,9 @@ const search_input_text = () => {
 const display_search_result = phones => {
     const searchResultFull = document.getElementById('search_resultFull');
     searchResultFull.textContent = '';
+    const phone_details = document.getElementById('about_Phone');
+    phone_details.textContent = '';
+
     document.getElementById('errorPhoneName').style.display = 'none';
 
     if(phones.length == 0){
@@ -46,9 +49,10 @@ const display_search_result = phones => {
                     <div class="card-body">
                       <h5 class="card-title">Name: ${phone.phone_name}</h5>
                       <p class="card-text">Brand Name: ${phone.brand}</p>
-                      <button onclick="Phone_details('${phone.slug}')" type="button" class="btn btn-primary">Details</button>
+                      <p class="text-center"><a onclick="Phone_details('${phone.slug}')" class="btn btn-primary" href="#" role="button">View Details</a></p>
+
                     </div>
-                  </div>
+        </div>
         `
         searchResultFull.appendChild(div);
     }
@@ -70,13 +74,13 @@ const display_details = details =>{
     div.innerHTML = `
     <img src="${details.image}" class="card-img-top w-50 mx-auto rounded-3 mt-3 mb-3" alt="...">
     <div class="card-body">
-        <h5 class="card-title">Released Date: ${details.releaseDate ? details.releaseDate : 'Not Available'}</h5>
+        <h5 class="card-title">Released Date: ${details.releaseDate ? details.releaseDate : 'No Data Found'}</h5>
         <h5 class="card-title">Storage:  ${details.mainFeatures.storage}</h5>
         <h5 class="card-title">Chipset:  ${details.mainFeatures.chipSet}</h5>
         <h5 class="card-title">DisplaySize: ${details.mainFeatures.displaySize}</h5>
         <h5 class="card-title">Memory: ${details.mainFeatures.memory}</h5>
         <h5 class="card-title">Sensor: ${details.mainFeatures.sensors}</h5>
-        <h5 class="card-title">Others: ${details.others?.WLAN ? details.others.WLAN : 'No Data Available'} </h5>
+        <h5 class="card-title">Others: ${details.others?.WLAN ? details.others.WLAN : 'No Data Found'} </h5>
     </div>
     `;
     phone_details.appendChild(div);
