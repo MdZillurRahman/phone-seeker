@@ -1,4 +1,11 @@
-const errorSearchText = document.getElementById('errorSearchText').style.display;
+document.getElementById('errorSearchText').style.display = 'none';
+document.getElementById('errorPhoneName').style.display = 'none';
+
+
+// error message
+const displayError = error => {
+    document.getElementById(error).style.display = 'block';
+}
 
 // search Text input field
 
@@ -7,40 +14,25 @@ const search_input_text = () => {
     const searchInputText = searchInputField.value;
    
     searchInputField.value = '';
-    const errorSearchText = document.getElementById('errorSearchText').style.display;
+    document.getElementById('errorSearchText').style.display = 'none';
+    
     if(searchInputText === ''){
-        errorSearchText = 'block';
+        displayError('errorSearchText');
     }
-
-
-    const url =`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
+    else{
+        const url =`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
     fetch(url)
     .then(res => res.json())
     .then(info => display_search_result(info.data));
+    }
 
-    // 
-
-    //     swal({
-    //         title: "No Result Found",
-    //         text: "please write something to display!",
-    //         icon: "warning",
-    //         button: "Previous",
-    //       });
-    // } else{
-    
-    // //load search input field data
-    // const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    // fetch(url)
-    // .then(res => res.json())
-    // .then(data => displaySearchResult(data.data))
-    // .catch(error => displayError(error));
-    // }
 }
 
 // display search result
 const display_search_result = phones => {
     const searchResultFull = document.getElementById('search_resultFull');
     searchResultFull.textContent = '';
+
 
     for(const phone of phones.slice(0, 20)){
         const div = document.createElement('div');
